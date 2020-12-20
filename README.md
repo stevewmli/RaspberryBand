@@ -12,3 +12,6 @@ pip install -r requirements.txt
 
 # Setup:
 sudo pigpiod && source env/bin/activate
+
+# Test
+python raspberry_band.py
