@@ -93,7 +93,11 @@ class RaspberryBand:
 
 
 def main():
-    band = RaspberryBand()
+    # read yaml configuration
+    # register player
+
+
+    # band = RaspberryBand()
     # band.players[0].play_note(0, 0.5)
     # band.players[0].play_note(0, 0.2)
     # band.players[0].play_note(1, 0.2)
@@ -102,37 +106,37 @@ def main():
     # band.players[0].play_note(3, 0.2)
     # band.players[0].play_note(4, 0.2)
     # band.players[0].play_note(5, 0.2)
-    band.players[0].play_note(5, 0.5)
-    band.players[0].play_note(4, 0.3)
-    band.players[0].play_note(3, 0.4)
-    band.players[0].play_note(5, 0.2)
-    band.players[0].play_note(3, 0.2)
-    band.players[0].play_note(5, 0.2)
-    band.players[0].play_note(3, 0.2)
+    # band.players[0].play_note(5, 0.5)
+    # band.players[0].play_note(4, 0.3)
+    # band.players[0].play_note(3, 0.4)
+    # band.players[0].play_note(5, 0.2)
+    # band.players[0].play_note(3, 0.2)
+    # band.players[0].play_note(5, 0.2)
+    # band.players[0].play_note(3, 0.2)
 
-    band.players[0].play_note(4, 0.5)
-    band.players[0].play_note(3, 0.2)
-    band.players[0].play_note(2, 0.4)
-    band.players[0].play_note(2, 0.2)
-    band.players[0].play_note(3, 0.2)
-    band.players[0].play_note(4, 0.2)
-    band.players[0].play_note(2, 0.2)
+    # band.players[0].play_note(4, 0.5)
+    # band.players[0].play_note(3, 0.2)
+    # band.players[0].play_note(2, 0.4)
+    # band.players[0].play_note(2, 0.2)
+    # band.players[0].play_note(3, 0.2)
+    # band.players[0].play_note(4, 0.2)
+    # band.players[0].play_note(2, 0.2)
 
-    band.players[0].play_note(3, 0.5)
-    band.players[0].play_note(2, 0.2)
-    band.players[0].play_note(1, 0.4)
-    band.players[0].play_note(3, 0.2)
-    band.players[0].play_note(1, 0.2)
-    band.players[0].play_note(3, 0.2)
-    band.players[0].play_note(1, 0.2)
+    # band.players[0].play_note(3, 0.5)
+    # band.players[0].play_note(2, 0.2)
+    # band.players[0].play_note(1, 0.4)
+    # band.players[0].play_note(3, 0.2)
+    # band.players[0].play_note(1, 0.2)
+    # band.players[0].play_note(3, 0.2)
+    # band.players[0].play_note(1, 0.2)
 
-    band.players[0].play_note(2, 0.5)
-    band.players[0].play_note(1, 0.2)
-    band.players[0].play_note(0, 0.4)
-    band.players[0].play_note(0, 0.2)
-    band.players[0].play_note(1, 0.2)
-    band.players[0].play_note(2, 0.2)
-    band.players[0].play_note(0, 0.2)
+    # band.players[0].play_note(2, 0.5)
+    # band.players[0].play_note(1, 0.2)
+    # band.players[0].play_note(0, 0.4)
+    # band.players[0].play_note(0, 0.2)
+    # band.players[0].play_note(1, 0.2)
+    # band.players[0].play_note(2, 0.2)
+    # band.players[0].play_note(0, 0.2)
 
 
 
