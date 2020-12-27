@@ -1,5 +1,4 @@
 from time import sleep
-import readchar
 import math
 import numpy
 import json
