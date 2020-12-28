@@ -24,9 +24,9 @@ class Percussionist:
 
         pw = self.notes[note]
         self.rpi.set_servo_pulsewidth(self.turner, pw)
-        sleep(0.1)
+        sleep(0.3)
 
-        self.rpi.set_servo_pulsewidth(self.drummer, 1300)
+        self.rpi.set_servo_pulsewidth(self.drummer, 1400)
         sleep(0.1)
         self.rpi.set_servo_pulsewidth(self.drummer, self.drummer_up)
         sleep(len)
