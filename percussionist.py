@@ -22,11 +22,14 @@ class Percussionist:
             sleep(len)
             return
 
-        pw = self.notes[note]
-        self.rpi.set_servo_pulsewidth(self.turner, pw)
-        sleep(0.3)
+        if note in self.notes:
+            pw = self.notes[note]
+            self.rpi.set_servo_pulsewidth(self.turner, pw)
+            sleep(0.3)
 
-        self.rpi.set_servo_pulsewidth(self.drummer, 1400)
-        sleep(0.1)
-        self.rpi.set_servo_pulsewidth(self.drummer, self.drummer_up)
-        sleep(len)
+            self.rpi.set_servo_pulsewidth(self.drummer, 1380)
+            sleep(0.1)
+            self.rpi.set_servo_pulsewidth(self.drummer, self.drummer_up)
+            sleep(len)
+        else:
+            sleep(len)
