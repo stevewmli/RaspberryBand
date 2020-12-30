@@ -57,7 +57,7 @@ def main():
     }
 
     xp = Percussionist(rpi, notes, 2, 3)
-    with open('./songs/london_bridge.yaml') as f:
+    with open('./songs/do_re_me.yaml') as f:
         notes = yaml.load(f, Loader=yaml.FullLoader)
         for n in notes:
             xp.play_node(n[0], n[1])
