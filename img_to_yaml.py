@@ -3,7 +3,8 @@ import ctc_utils
 import cv2
 import numpy as np
 import sys
-
+from midi.player import *
+import simpleaudio as sa
 
 def split_score(file_name, tick):
     img = cv2.imread(file_name)
@@ -51,12 +52,15 @@ def split_score(file_name, tick):
 
     bboxes.sort(key=sort_key)
 
+    def include_line(line_count, tick):
+        return tick == 0 or (tick == 1 and line_count % 2 == 1) or (tick > 1 and line_count % tick == 0)
+
     lines = []
     line_count = 0
     for bbox in bboxes:
         if abs(bbox[2] - max_weight) < (max_weight / 4):
 
-            if line_count % tick == 0:
+            if include_line(line_count, tick):
                 x = bbox[0]
                 y = bbox[1]
                 w = bbox[2]
@@ -114,6 +118,7 @@ def main(ms_file_name, line_freq):
     print(f"Process {ms_file_name}\n")
     lines = split_score(ms_file_name, line_freq)
 
+    SEMANTIC = ''
     # process save file
     for idx, line in enumerate(lines):
         # write the file to sample directory for sampling
@@ -135,9 +140,32 @@ def main(ms_file_name, line_freq):
                             })
 
         str_predictions = ctc_utils.sparse_tensor_to_strs(prediction)
+
         for w in str_predictions[0]:
-            print (int2word[w]),
-            print ('\t'),
+            SEMANTIC += int2word[w] + '\n'
+
+    # gets the audio file
+    audio = get_sinewave_audio(SEMANTIC)
+
+    # horizontally stacks the freqs    
+    audio =  np.hstack(audio)
+
+    # normalizes the freqs
+    audio *= 32767 / np.max(np.abs(audio))
+
+    #converts it to 16 bits
+    audio = audio.astype(np.int16)
+
+    #plays midi
+    play_obj = sa.play_buffer(audio, 1, 2, 44100)
+
+    #outputs to the console
+    if play_obj.is_playing():
+        print("\nplaying...")
+        print(f'\n{SEMANTIC}')
+
+    #stop playback when done
+    play_obj.wait_done()
 
 
 if __name__ == "__main__":

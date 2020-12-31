@@ -11,7 +11,7 @@ except ModuleNotFoundError:
     print("pigpio not installed, running in test mode")
     force_virtual_mode = True
 
-def main():
+def main(song):
     # turner adjustment
     rpi = pigpio.pi()
     # notes = {
@@ -57,7 +57,7 @@ def main():
     }
 
     xp = Percussionist(rpi, notes, 2, 3)
-    with open('./songs/do_re_me.yaml') as f:
+    with open(song) as f:
         notes = yaml.load(f, Loader=yaml.FullLoader)
         for n in notes:
             xp.play_node(n[0], n[1])
@@ -70,4 +70,4 @@ if __name__ == "__main__":
     if len(sys.argv) == 2 and sys.argv[1] == "p":
         park()
     else:
-        main()
+        main(sys.argv[1])

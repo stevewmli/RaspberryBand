@@ -27,7 +27,7 @@ class Percussionist:
             self.rpi.set_servo_pulsewidth(self.turner, pw)
             sleep(0.3)
 
-            self.rpi.set_servo_pulsewidth(self.drummer, 1380)
+            self.rpi.set_servo_pulsewidth(self.drummer, 1330)
             sleep(0.1)
             self.rpi.set_servo_pulsewidth(self.drummer, self.drummer_up)
             sleep(len)
