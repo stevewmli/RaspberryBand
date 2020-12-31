@@ -1,2 +1,5 @@
 env/
+__pycache__/
+samples/
+models/
 Notes.md
