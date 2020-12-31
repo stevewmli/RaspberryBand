@@ -1,5 +1,6 @@
 env/
 __pycache__/
+music_scores/
 samples/
 models/
 Notes.md
