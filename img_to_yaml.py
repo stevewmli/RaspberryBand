@@ -1,3 +1,4 @@
+from numpy.lib.function_base import append
 import tensorflow.compat.v1 as tf
 import ctc_utils
 import cv2
@@ -5,7 +6,10 @@ import numpy as np
 import sys
 from midi.player import *
 import simpleaudio as sa
+import re
 
+note_r = re.compile("(note|gracenote)-([A-G][b|#]?[0-9])_(.*)$")
+other_r = re.compile("(clef|keySignature|timeSignature|rest|multirest)-(.*)$")
 
 # Automatic brightness and contrast optimization with optional histogram clipping
 def automatic_brightness_and_contrast(image, clip_hist_percent=1):
@@ -136,6 +140,21 @@ def read_vocab(vocab_semantic):
     return int2word
 
 
+def parse_description(description):
+    if description == "barline":
+        return ("barline", "", "")
+    
+    result = note_r.findall(description)
+    if len(result) == 1:
+        return result[0]
+
+    result = other_r.findall(description)
+    if len(result) == 1:
+        return result[0] + ("", )
+
+    return (f"unknown", description, "")
+
+
 def main(ms_file_name, line_freq):
     tf.reset_default_graph()
     sess = tf.InteractiveSession()
@@ -167,7 +186,7 @@ def main(ms_file_name, line_freq):
     print(f"Process {ms_file_name}\n")
     lines = split_score(ms_file_name, line_freq)
 
-    SEMANTIC = ''
+    output = open("output.yaml", "w")  
     # process save file
     for idx, line in enumerate(lines):
         # write the file to sample directory for sampling
@@ -191,31 +210,12 @@ def main(ms_file_name, line_freq):
         str_predictions = ctc_utils.sparse_tensor_to_strs(prediction)
 
         for w in str_predictions[0]:
-            SEMANTIC += int2word[w] + '\n'
-
-    # gets the audio file
-    audio = get_sinewave_audio(SEMANTIC)
-
-    # horizontally stacks the freqs    
-    audio =  np.hstack(audio)
-
-    # normalizes the freqs
-    audio *= 32767 / np.max(np.abs(audio))
-
-    #converts it to 16 bits
-    audio = audio.astype(np.int16)
-
-    #plays midi
-    play_obj = sa.play_buffer(audio, 1, 2, 44100)
-
-    #outputs to the console
-    if play_obj.is_playing():
-        print("\nplaying...")
-        print(f'\n{SEMANTIC}')
-
-    #stop playback when done
-    play_obj.wait_done()
-
+            description = int2word[w]
+            notation, v1, v2 = parse_description(description)
+            if v1 != "tie":
+                output.write(f'- ["{notation}", "{v1}", "{v2}"]\n')
+    
+    output.close()
 
 if __name__ == "__main__":
     if len(sys.argv) == 3:

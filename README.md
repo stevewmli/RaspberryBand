@@ -17,7 +17,12 @@ sudo pigpiod && source env/bin/activate
 python raspberry_band.py
  
 # OMR model
+Play Sheet Music with Python, OpenCV, and an Optical Music Recognition Model - Artical by Israel Ebonko
 https://heartbeat.fritz.ai/play-sheet-music-with-python-opencv-and-an-optical-music-recognition-model-a55a3bea8fe
+
+The OMR Model mentioned in the artical
 https://grfia.dlsi.ua.es/primus/models/PrIMuS/Semantic-Model.zip
-TensorFlow code to perform end-to-end Optical Music Recognition on monophonic scores through Convolutional Recurrent Neural Networks and CTC-based training.
+
+TensorFlow code to perform end-to-end Optical Music Recognition on monophonic scores through Convolutional Recurrent Neural Networks and CTC-based training
+Utilize the logic proivded in the ctc_predict.py in the img_to_yaml.py
 https://github.com/OMR-Research/tf-end-to-end
