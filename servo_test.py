@@ -16,33 +16,67 @@ def main(song):
     rpi = pigpio.pi()
 
     l_notes = {
-         "G#6": 2020,
-         "A6":  1940,
-         "A#6": 1870,
-         "B6":  1810,
-         "C7":  1740,
-         "C#7": 1690,
-         "D7": 1600,
+         "G5":  2000,
+         "G#5": 1930,
+         "A5":  1860,
+         "A#5": 1790,
+         "B5":  1720,
+         "C6":  1650,
+         "C#6": 1570,
     }
 
     r_notes = {
-         "D#7": 1740,
-         "E7": 1660,
-         "F7": 1560,
-         "F#7": 1500,
-         "G7": 1430,
-         "G#7": 1360,
-         "A7": 1290,
+         "D6":  1690,
+         "D#6": 1600,
+         "E6":  1515,
+         "F6":  1435,
+         "F#6": 1350,
+         "G6":  1260,
     }
 
-    lh = Hand(rpi, l_notes, "B6", 2, 3)
-    rh = Hand(rpi, r_notes, "F#7", 14, 15)
+    l2_notes = {
+         "G#6": 1995,
+         "A6":  1915,
+         "A#6": 1855,
+         "B6":  1790,
+         "C7":  1730,
+         "C#7": 1660,
+         "D7":  1600,
+    }
 
-    xp = Percussionist(lh, rh)
+    r2_notes = {
+         "D#7": 1730,
+         "E7":  1640,
+         "F7":  1575,
+         "F#7": 1510,
+         "G7":  1440,
+         "G#7": 1380,
+         "A7":  1290,
+    }
+
+    lh = Hand(rpi, l_notes, "A#5", 23, 24)
+    rh = Hand(rpi, r_notes, "E6", 27, 17)
+
+    lh2 = Hand(rpi, l2_notes, "B6", 2, 3)
+    rh2 = Hand(rpi, r2_notes, "F#7", 14, 15)
+
+    xp1 = Percussionist(lh, rh)
+    xp2 = Percussionist(lh2, rh2)
     with open(song) as f:
         notes = yaml.load(f, Loader=yaml.FullLoader)
         for n in notes:
-            xp.play_note(n[0], n[1])
+            if n[0] == "Sleep":
+                sleep(n[1])
+                continue
+
+            if xp1.can_play_note(n[0]): 
+                xp2.stand_by()
+                xp1.play_note(n[0], n[1])
+            elif xp2.can_play_note(n[0]):
+                xp1.stand_by()
+                xp2.play_note(n[0], n[1])
+            else:
+                print(f"No player can play {n[0]}: {n[1]}")
 
 def park():
 # turner adjustment

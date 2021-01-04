@@ -1,5 +1,8 @@
 from time import sleep
 
+from yaml.tokens import BlockEndToken
+
+
 class Hand:
     def __init__(self, rpi, notes, stand_by_note, turner, drummer):
         self.rpi = rpi
@@ -28,12 +31,13 @@ class Hand:
         if note in self.notes:
             pw = self.notes[note]
             self.rpi.set_servo_pulsewidth(self.turner, pw)
-            sleep(0.3)
+            sleep(0.15)
 
-            self.rpi.set_servo_pulsewidth(self.drummer, 1200)
-            sleep(0.1)
+            self.rpi.set_servo_pulsewidth(self.drummer, 1000)
+            sleep(0.08)
             self.rpi.set_servo_pulsewidth(self.drummer, self.drummer_up)
-            sleep(len)
+            sleep(len / 2.0)
+            # sleep(len)
         else:
             sleep(len)
 
@@ -43,7 +47,6 @@ class Hand:
     def stand_by(self):
         pw = self.notes[self.stand_by_note]
         self.rpi.set_servo_pulsewidth(self.turner, pw)
-
 
 
 class Percussionist:
@@ -58,3 +61,10 @@ class Percussionist:
         elif self.right_hand.can_play_note(note):
             self.left_hand.stand_by()
             self.right_hand.play_note(note, len)
+
+    def can_play_note(self, note):
+        return self.left_hand.can_play_note(note) or self.right_hand.can_play_note(note)
+
+    def stand_by(self):
+        self.left_hand.stand_by()
+        self.right_hand.stand_by()
