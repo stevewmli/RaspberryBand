@@ -10,8 +10,11 @@ python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
 
-# Setup:
+# Setup - start here:
 sudo pigpiod && source env/bin/activate
+
+# reset motor
+cd ~/py_ws/RaspberryBand 
 
 # Test
 python raspberry_band.py
