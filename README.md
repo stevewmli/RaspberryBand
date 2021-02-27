@@ -18,6 +18,9 @@ cd ~/py_ws/RaspberryBand
 
 # Test
 python raspberry_band.py
+
+# music conversion
+python img_to_yaml.py png_name line_freq
  
 # OMR model
 Play Sheet Music with Python, OpenCV, and an Optical Music Recognition Model - Artical by Israel Ebonko

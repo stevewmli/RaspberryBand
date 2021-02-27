@@ -27,17 +27,17 @@ def main(song):
     }
 
     r_notes = {
-         "D#6": 1625,
-         "E6":  1540,
-         "F6":  1475,
-         "F#6": 1410,
-         "G6":  1325,
-         "G#6":  1250,
-         "A6":  1160,
+         "D#6": 1605,
+         "E6":  1520,
+         "F6":  1455,
+         "F#6": 1390,
+         "G6":  1305,
+         "G#6":  1230,
+         "A6":  1140,
     }
 
     l2_notes = {
-         "A#6": 1815,
+         "A#6": 1820,
          "B6":  1755,
          "C7":  1690,
          "C#7": 1625,
@@ -68,8 +68,8 @@ def main(song):
     with open(song) as f:
         notes = yaml.load(f, Loader=yaml.FullLoader)
         for n in notes:
-            if n[0] == "Sleep":
-                sleep(n[1])
+            if n[0] == "Sleep" or n[0] == "rest" :
+                sleep(n[1] / 4.0)
                 continue
 
             if xp1.can_play_note(n[0]): 
@@ -80,6 +80,7 @@ def main(song):
                 xp2.play_note(n[0], n[1])
             else:
                 print(f"No player can play {n[0]}: {n[1]}")
+                sleep(n[1] / 4.0)
 
 def park():
 # turner adjustment

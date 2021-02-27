@@ -36,7 +36,7 @@ class Hand:
             self.rpi.set_servo_pulsewidth(self.drummer, 1000)
             sleep(0.08)
             self.rpi.set_servo_pulsewidth(self.drummer, self.drummer_up)
-            sleep(len / 2.0)
+            sleep(len / 5.0)
             # sleep(len)
         else:
             sleep(len)
@@ -55,6 +55,7 @@ class Percussionist:
         self.right_hand = right_hand
 
     def play_note(self, note, len):
+        len = len / 2.0
         if self.left_hand.can_play_note(note):
             self.right_hand.stand_by()
             self.left_hand.play_note(note, len)
