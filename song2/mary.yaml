@@ -1,0 +1,72 @@
+- ["quarter_per_min", 120.0]
+- ["octave", 2] 
+- ["note", "B4", "quarter"]
+- ["note", "A4", "quarter"]
+- ["note", "G4", "quarter"]
+- ["note", "A4", "quarter"]
+### ----------------
+- ["note", "B4", "quarter"]
+- ["note", "B4", "quarter"]
+- ["note", "B4", "half"]
+### ----------------
+- ["note", "A4", "quarter"]
+- ["note", "A4", "quarter"]
+- ["note", "A4", "half"]
+### ----------------
+- ["note", "B4", "quarter"]
+- ["note", "D5", "quarter"]
+- ["note", "D5", "half"]
+### ----------------
+- ["note", "B4", "quarter"]
+- ["note", "A4", "quarter"]
+- ["note", "G4", "quarter"]
+- ["note", "A4", "quarter"]
+### ----------------
+- ["note", "B4", "quarter"]
+- ["note", "B4", "quarter"]
+- ["note", "B4", "quarter"]
+- ["note", "B4", "quarter"]
+### ----------------
+- ["note", "A4", "quarter"]
+- ["note", "A4", "quarter"]
+- ["note", "B4", "quarter"]
+- ["note", "A4", "quarter"]
+### ----------------
+- ["note", "G4", "half"]
+- ["rest", "quarter"]
+- ["note", "A4", "quarter"]
+### ----------------
+- ["note", "B4", "quarter."]
+- ["note", "A4", "quarter"]
+- ["note", "G4", "quarter"]
+- ["note", "A4", "quarter"]
+### ----------------
+- ["note", "B4", "quarter"]
+- ["note", "B4", "quarter"]
+- ["note", "B4", "half"]
+### ----------------
+- ["note", "A4", "quarter"]
+- ["note", "A4", "quarter"]
+- ["note", "A4", "half"]
+### ----------------
+- ["note", "B4", "quarter"]
+- ["note", "D5", "quarter"]
+- ["note", "D5", "half"]
+### ----------------
+- ["note", "B4", "quarter."]
+- ["note", "A4", "eighth."]
+- ["note", "G4", "quarter"]
+- ["note", "A4", "eighth"]
+### ----------------
+- ["note", "B4", "quarter"]
+- ["note", "B4", "quarter"]
+- ["note", "B4", "quarter"]
+- ["note", "B4", "eighth"]
+### ----------------
+- ["note", "A4", "quarter"]
+- ["note", "A4", "quarter"]
+- ["note", "B4", "quarter"]
+- ["note", "A4", "eighth"]
+### ----------------
+- ["note", "G4", "whole"]
+### ----------------

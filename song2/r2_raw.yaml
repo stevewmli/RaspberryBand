@@ -1,0 +1,139 @@
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "Bb5", "eighth."]
+- ["note", "F5", "sixteenth"]
+- ["note", "Bb5", "sixteenth"]
+- ["note", "C6", "quarter"]
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "D6", "eighth."]
+- ["note", "C6", "sixteenth"]
+- ["note", "D6", "eighth"]
+- ["note", "D6", "eighth."]
+### ----------------
+- ["note", "G4", "quarter"]
+- ["note", "E6", "eighth"]
+- ["note", "C6", "eighth."]
+- ["note", "Bb5", "sixteenth"]
+- ["note", "C6", "sixteenth"]
+### ----------------
+- ["note", "Bb5", "eighth"]
+- ["note", "D6", "eighth"]
+- ["note", "Bb5", "quarter"]
+- ["note", "F5", "sixteenth"]
+### ----------------
+- ["note", "Bb5", "eighth."]
+- ["note", "F5", "sixteenth"]
+- ["note", "Bb5", "eighth"]
+- ["note", "A5", "eighth"]
+- ["note", "F5", "sixteenth"]
+### ----------------
+- ["note", "Bb5", "eighth."]
+- ["note", "C6", "sixteenth"]
+- ["note", "D6", "eighth"]
+- ["note", "D6", "eighth."]
+### ----------------
+- ["note", "C6", "quarter"]
+- ["note", "C6", "eighth"]
+- ["note", "C6", "eighth."]
+- ["note", "Bb5", "sixteenth"]
+- ["note", "A5", "eighth"]
+### ----------------
+- ["note", "Bb5", "quarter"]
+- ["note", "Bb5", "eighth"]
+- ["note", "G5", "quarter"]
+- ["note", "Bb5", "sixteenth"]
+### ----------------
+- ["note", "G5", "quarter."]
+- ["rest", "eighth"]
+- ["note", "Bb5", "eighth"]
+- ["note", "C6", "eighth"]
+### ----------------
+- ["note", "D6", "quarter.."]
+- ["rest", "quarter."]
+### ----------------
+- ["note", "D6", "eighth"]
+- ["note", "G5", "eighth"]
+- ["note", "A5", "eighth"]
+- ["note", "Bb5", "eighth"]
+- ["note", "C6", "eighth"]
+- ["note", "D6", "eighth"]
+### ----------------
+- ["note", "E6", "quarter"]
+- ["note", "G5", "quarter."]
+- ["rest", "sixteenth"]
+- ["note", "G5", "sixteenth"]
+- ["note", "A5", "sixteenth"]
+- ["note", "Bb5", "sixteenth"]
+- ["note", "C6", "sixteenth"]
+### ----------------
+- ["note", "D6", "quarter"]
+- ["rest", "eighth"]
+- ["note", "G5", "sixteenth"]
+- ["note", "A5", "sixteenth"]
+- ["note", "Bb5", "sixteenth"]
+- ["note", "A5", "sixteenth"]
+- ["note", "Bb5", "eighth"]
+### ----------------
+- ["note", "F6", "sixteenth"]
+- ["note", "Eb6", "quarter"]
+- ["rest", "eighth"]
+- ["note", "C6", "sixteenth"]
+- ["note", "D6", "sixteenth"]
+- ["note", "C6", "sixteenth"]
+- ["note", "D6", "sixteenth"]
+- ["note", "Eb6", "eighth"]
+### ----------------
+- ["note", "F6", "sixteenth"]
+### ----------------
+- ["rest", "quarter."]
+- ["rest", "quarter"]
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "G5", "eighth."]
+- ["note", "F5", "sixteenth"]
+- ["note", "Bb5", "eighth"]
+- ["note", "C6", "quarter"]
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "D6", "eighth."]
+- ["note", "Eb6", "sixteenth"]
+- ["note", "F6", "eighth"]
+- ["note", "D6", "quarter."]
+### ----------------
+- ["note", "G4", "quarter"]
+- ["note", "G4", "eighth"]
+- ["note", "Eb6", "quarter.."]
+- ["note", "D6", "sixteenth"]
+- ["note", "C6", "eighth"]
+### ----------------
+- ["note", "Bb5", "quarter"]
+- ["note", "D6", "eighth"]
+- ["note", "Bb5", "quarter"]
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "Bb5", "eighth."]
+- ["note", "F5", "sixteenth"]
+- ["note", "Bb5", "eighth"]
+- ["note", "C6", "quarter"]
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "D6", "eighth."]
+- ["note", "E6", "sixteenth"]
+- ["note", "D6", "eighth"]
+- ["note", "D6", "quarter."]
+### ----------------
+- ["note", "Eb6", "quarter"]
+- ["note", "Eb6", "eighth"]
+- ["note", "Eb6", "quarter.."]
+- ["note", "D6", "sixteenth"]
+- ["note", "A5", "eighth"]
+### ----------------
+- ["note", "Bb5", "quarter"]
+- ["note", "D6", "eighth"]
+- ["note", "Bb5", "quarter."]
+### ----------------
+- ["rest", "whole"]
+### ----------------
+- ["rest", "half"]
+### ----------------

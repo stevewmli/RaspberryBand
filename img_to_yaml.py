@@ -12,18 +12,20 @@ note_r = re.compile("(note|gracenote)-([A-G][b|#]?[0-9])_(.*)$")
 other_r = re.compile("(clef|keySignature|timeSignature|rest|multirest)-(.*)$")
 
 # Automatic brightness and contrast optimization with optional histogram clipping
+
+
 def automatic_brightness_and_contrast(image, clip_hist_percent=1):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Calculate grayscale histogram
-    hist = cv2.calcHist([gray],[0],None,[256],[0,256])
+    hist = cv2.calcHist([gray], [0], None, [256], [0, 256])
     hist_size = len(hist)
 
     # Calculate cumulative distribution from the histogram
     accumulator = []
     accumulator.append(float(hist[0]))
     for index in range(1, hist_size):
-        accumulator.append(accumulator[index -1] + float(hist[index]))
+        accumulator.append(accumulator[index - 1] + float(hist[index]))
 
     # Locate points to clip
     maximum = accumulator[-1]
@@ -36,7 +38,7 @@ def automatic_brightness_and_contrast(image, clip_hist_percent=1):
         minimum_gray += 1
 
     # Locate right cut
-    maximum_gray = hist_size -1
+    maximum_gray = hist_size - 1
     while accumulator[maximum_gray] >= (maximum - clip_hist_percent):
         maximum_gray -= 1
 
@@ -56,6 +58,7 @@ def automatic_brightness_and_contrast(image, clip_hist_percent=1):
     auto_result = cv2.convertScaleAbs(image, alpha=alpha, beta=beta)
     return (auto_result, alpha, beta)
 
+
 def split_score(file_name, tick):
     img = cv2.imread(file_name)
 
@@ -74,30 +77,31 @@ def split_score(file_name, tick):
     mask = cv2.morphologyEx(mask, cv2.MORPH_DILATE, kernel)
 
     # recolor border to white
-    img[mask==255] = (255,255,255)
+    img[mask == 255] = (255, 255, 255)
 
     # convert img to grayscale
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # otsu threshold
-    thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_OTSU )[1] 
+    thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_OTSU)[1]
 
     # apply morphology open
-    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (17,17))
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (17, 17))
     morph = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel)
     morph = 255 - morph
 
     # find contours and bounding boxes
     bboxes = []
-    contours = cv2.findContours(morph, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours = cv2.findContours(
+        morph, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     contours = contours[0] if len(contours) == 2 else contours[1]
 
     max_weight = 0
     for cntr in contours:
-        x,y,w,h = cv2.boundingRect(cntr)
+        x, y, w, h = cv2.boundingRect(cntr)
         if w > max_weight:
             max_weight = w
-        bboxes.append((x,y,w,h))
+        bboxes.append((x, y, w, h))
 
     # sort bboxes on y coordinate
     def sort_key(elem):
@@ -119,7 +123,7 @@ def split_score(file_name, tick):
                 w = bbox[2]
                 h = bbox[3]
                 print(f"{bbox}\n")
-                sample  = img[y:y+h, x:x+w]
+                sample = img[y:y+h, x:x+w]
                 lines.append(sample)
 
             line_count += 1
@@ -129,7 +133,7 @@ def split_score(file_name, tick):
 
 def read_vocab(vocab_semantic):
     # Read the dictionary
-    dict_file = open(vocab_semantic,'r')
+    dict_file = open(vocab_semantic, 'r')
     dict_list = dict_file.read().splitlines()
     int2word = dict()
     for word in dict_list:
@@ -143,7 +147,7 @@ def read_vocab(vocab_semantic):
 def parse_description(description):
     if description == "barline":
         return ("barline", "", "")
-    
+
     result = note_r.findall(description)
     if len(result) == 1:
         return result[0]
@@ -155,7 +159,7 @@ def parse_description(description):
     return (f"unknown", description, "")
 
 
-def main(ms_file_name, line_freq):
+def main(ms_file_name, line_freq, ouptut_file):
     tf.reset_default_graph()
     sess = tf.InteractiveSession()
 
@@ -165,7 +169,7 @@ def main(ms_file_name, line_freq):
     # Restore weights
     model = "models/semantic_model.meta"
     saver = tf.train.import_meta_graph(model)
-    saver.restore(sess,model[:-5])
+    saver.restore(sess, model[:-5])
 
     graph = tf.get_default_graph()
 
@@ -181,12 +185,11 @@ def main(ms_file_name, line_freq):
 
     decoded, _ = tf.nn.ctc_greedy_decoder(logits, seq_len)
 
-
     # split the music score into lines
     print(f"Process {ms_file_name}\n")
     lines = split_score(ms_file_name, line_freq)
 
-    output = open("output.yaml", "w")  
+    output = open(ouptut_file, "w")
     # process save file
     for idx, line in enumerate(lines):
         # write the file to sample directory for sampling
@@ -196,16 +199,16 @@ def main(ms_file_name, line_freq):
         gray = cv2.cvtColor(line, cv2.COLOR_BGR2GRAY)
         image = ctc_utils.resize(gray, HEIGHT)
         image = ctc_utils.normalize(image)
-        image = np.asarray(image).reshape(1,image.shape[0],-1,1)
+        image = np.asarray(image).reshape(1, image.shape[0], -1, 1)
 
-        seq_lengths = [ image.shape[2] / WIDTH_REDUCTION ]
+        seq_lengths = [image.shape[2] / WIDTH_REDUCTION]
 
         prediction = sess.run(decoded,
-                            feed_dict={
-                                model_input: image,
-                                seq_len: seq_lengths,
-                                rnn_keep_prob: 1.0,
-                            })
+                              feed_dict={
+                                  model_input: image,
+                                  seq_len: seq_lengths,
+                                  rnn_keep_prob: 1.0,
+                              })
 
         str_predictions = ctc_utils.sparse_tensor_to_strs(prediction)
 
@@ -213,12 +216,18 @@ def main(ms_file_name, line_freq):
             description = int2word[w]
             notation, v1, v2 = parse_description(description)
             if v1 != "tie":
-                output.write(f'- ["{notation}", "{v1}", "{v2}"]\n')
-    
+                if notation == "barline":
+                    output.write("### ----------------\n")
+                elif notation == "note" or notation == "gracenote":
+                    output.write(f'- ["{notation}", "{v1}", "{v2}"]\n')
+                elif notation == "rest":
+                    output.write(f'- ["rest", "{v1}"]\n')
+
     output.close()
 
+
 if __name__ == "__main__":
-    if len(sys.argv) == 3:
-        main(sys.argv[1], int(sys.argv[2]))
+    if len(sys.argv) == 4:
+        main(sys.argv[1], int(sys.argv[2]), sys.argv[3])
     else:
-        print("python img_to_yaml music_score.png line_freq")
+        print("python img_to_yaml music_score.png line_freq output.yaml")

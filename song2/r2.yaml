@@ -1,0 +1,155 @@
+- ["quarter_per_min", 95.0]
+- ["octave", 1] 
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "Bb5", "eighth."]
+- ["note", "F5", "sixteenth"]
+- ["note", "Bb5", "eighth"]
+- ["note", "C6", "quarter"]
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "D6", "eighth."]
+- ["note", "Eb6", "sixteenth"]
+- ["note", "F6", "eighth"]
+- ["note", "F6", "quarter."]
+### ----------------
+- ["note", "Eb6", "quarter"]
+- ["note", "Eb6", "eighth"]
+- ["note", "Eb6", "eighth."]
+- ["note", "D6", "sixteenth"]
+- ["note", "C6", "eighth"]
+### ----------------
+- ["note", "Bb5", "quarter"]
+- ["note", "D6", "eighth"]
+- ["note", "Bb5", "quarter"]
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "Bb5", "eighth."]
+- ["note", "F5", "sixteenth"]
+- ["note", "Bb5", "eighth"]
+- ["note", "C6", "quarter"]
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "D6", "eighth."]
+- ["note", "Eb6", "sixteenth"]
+- ["note", "F6", "eighth"]
+- ["note", "F6", "quarter."]
+### ----------------
+- ["note", "Eb6", "quarter"]
+- ["note", "Eb6", "eighth"]
+- ["note", "Eb6", "eighth."]
+- ["note", "D6", "sixteenth"]
+- ["note", "C6", "eighth"]
+### ----------------
+- ["note", "Bb5", "quarter"]
+- ["note", "D6", "eighth"]
+- ["note", "Bb5", "quarter"]
+- ["octave", 0]
+- ["note", "Bb5", "eighth"]
+### ----------------
+- ["note", "Bb5", "quarter."]
+- ["rest", "eighth"]
+- ["note", "D6", "eighth"]
+- ["note", "Eb6", "eighth"]
+### ----------------
+- ["note", "F6", "quarter."]
+- ["rest", "quarter."]
+### ----------------
+- ["note", "F6", "eighth"]
+- ["note", "Bb5", "eighth"]
+- ["note", "C6", "eighth"]
+- ["note", "D6", "eighth"]
+- ["note", "Eb6", "eighth"]
+- ["note", "F6", "eighth"]
+### ----------------
+- ["note", "Bb6", "quarter."]
+- ["note", "Bb5", "quarter."]
+### ----------------
+- ["rest", "quarter."]
+- ["rest", "sixteenth"]
+- ["note", "G5", "sixteenth"]
+- ["note", "A5", "sixteenth"]
+- ["note", "Bb5", "sixteenth"]
+- ["note", "C6", "eighth"]
+### ----------------
+- ["note", "D6", "quarter"]
+- ["rest", "eighth"]
+- ["note", "G5", "sixteenth"]
+- ["note", "A5", "sixteenth"]
+- ["note", "Bb5", "sixteenth"]
+- ["note", "C6", "sixteenth"]
+- ["note", "D6", "eighth"]
+### ----------------
+- ["note", "E6", "quarter"]
+- ["rest", "eighth"]
+- ["note", "C6", "sixteenth"]
+- ["note", "D6", "sixteenth"]
+- ["note", "E6", "sixteenth"]
+- ["note", "F6", "sixteenth"]
+- ["note", "G6", "eighth"]
+### ----------------
+- ["note", "F6", "half."]
+### ----------------
+- ["rest", "quarter."]
+- ["rest", "quarter"]
+- ["octave", 1]
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "Bb5", "eighth."]
+- ["note", "F5", "sixteenth"]
+- ["note", "Bb5", "eighth"]
+- ["note", "C6", "quarter"]
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "D6", "eighth."]
+- ["note", "Eb6", "sixteenth"]
+- ["note", "F6", "eighth"]
+- ["note", "F6", "quarter."]
+### ----------------
+- ["note", "Eb6", "quarter"]
+- ["note", "Eb6", "eighth"]
+- ["note", "Eb6", "eighth."]
+- ["note", "D6", "sixteenth"]
+- ["note", "C6", "eighth"]
+### ----------------
+- ["note", "Bb5", "quarter"]
+- ["note", "D6", "eighth"]
+- ["note", "Bb5", "quarter"]
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "Bb5", "eighth."]
+- ["note", "F5", "sixteenth"]
+- ["note", "Bb5", "eighth"]
+- ["note", "C6", "quarter"]
+- ["note", "F5", "eighth"]
+### ----------------
+- ["note", "D6", "eighth."]
+- ["note", "Eb6", "sixteenth"]
+- ["note", "F6", "eighth"]
+- ["note", "F6", "quarter."]
+### ----------------
+- ["note", "Eb6", "quarter"]
+- ["note", "Eb6", "eighth"]
+- ["note", "Eb6", "eighth."]
+- ["note", "D6", "sixteenth"]
+- ["note", "C6", "eighth"]
+### ----------------
+- ["note", "Bb5", "quarter"]
+- ["note", "D6", "eighth"]
+- ["note", "Bb5", "quarter."]
+- ["octave", 0]
+### ----------------
+- ["note", "Eb6", "quarter"]
+- ["note", "Eb6", "eighth"]
+- ["note", "Eb6", "eighth."]
+- ["note", "D6", "sixteenth"]
+- ["note", "C6", "eighth"]
+### ----------------
+- ["note", "Bb5", "quarter"]
+- ["note", "D6", "eighth"]
+- ["note", "Bb5", "quarter."]
+### ----------------
+- ["rest", "whole"]
+### ----------------
+- ["rest", "whole"]
+### ----------------

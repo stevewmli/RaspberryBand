@@ -72,7 +72,7 @@ def main(song):
                 sleep(n[1] / 4.0)
                 continue
 
-            if xp1.can_play_note(n[0]): 
+            if xp1.can_play_note(n[0]):
                 xp2.stand_by()
                 xp1.play_note(n[0], n[1])
             elif xp2.can_play_note(n[0]):
@@ -80,7 +80,7 @@ def main(song):
                 xp2.play_note(n[0], n[1])
             else:
                 print(f"No player can play {n[0]}: {n[1]}")
-                sleep(n[1] / 4.0)
+                sleep(n[1])
 
 def park():
 # turner adjustment
