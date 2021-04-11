@@ -16,7 +16,7 @@ def play(rpi, turner, drummer, pw):
     rpi.set_servo_pulsewidth(turner, pw)
     sleep(0.1)
 
-    rpi.set_servo_pulsewidth(drummer, 1200)
+    rpi.set_servo_pulsewidth(drummer, 1300)
     sleep(0.1)
     rpi.set_servo_pulsewidth(drummer, 1500)
     sleep(0.2)
@@ -37,6 +37,12 @@ def main():
     l2_turner = 14      # 7 8
     l2_drummer = 15
 
+    rpi.set_servo_pulsewidth(l_turner, 1630)
+    rpi.set_servo_pulsewidth(r_turner, 1405)
+    rpi.set_servo_pulsewidth(l2_turner, 1625)
+    rpi.set_servo_pulsewidth(r2_turner, 1485)
+    sleep(0.5)
+
     play(rpi, l_turner, l_drummer, 1825)  # G5
     play(rpi, l_turner, l_drummer, 1760)  # G#5
     play(rpi, l_turner, l_drummer, 1695)  # A5
@@ -45,16 +51,16 @@ def main():
     play(rpi, l_turner, l_drummer, 1480)  # C6  
     play(rpi, l_turner, l_drummer, 1410)  # C#6  
     play(rpi, l_turner, l_drummer, 1340)  # D6  
-    rpi.set_servo_pulsewidth(l_turner, 1500)
+    rpi.set_servo_pulsewidth(l_turner, 1630)
 
     play(rpi, r_turner, r_drummer, 1605) # D#6
-    play(rpi, r_turner, r_drummer, 1520) # E6
-    play(rpi, r_turner, r_drummer, 1455) # F6
-    play(rpi, r_turner, r_drummer, 1390) # F#6
-    play(rpi, r_turner, r_drummer, 1305) # G6
-    play(rpi, r_turner, r_drummer, 1230) # G#6
-    play(rpi, r_turner, r_drummer, 1140) # A6
-    rpi.set_servo_pulsewidth(r_turner, 1500)
+    play(rpi, r_turner, r_drummer, 1525) # E6
+    play(rpi, r_turner, r_drummer, 1465) # F6
+    play(rpi, r_turner, r_drummer, 1405) # F#6
+    play(rpi, r_turner, r_drummer, 1325) # G6
+    play(rpi, r_turner, r_drummer, 1245) # G#6
+    play(rpi, r_turner, r_drummer, 1135) # A6
+    rpi.set_servo_pulsewidth(r_turner, 1405)
 
     play(rpi, l2_turner, l2_drummer, 1820) # A#6
     play(rpi, l2_turner, l2_drummer, 1755) # B6
@@ -64,7 +70,7 @@ def main():
     play(rpi, l2_turner, l2_drummer, 1490) # D#7
     play(rpi, l2_turner, l2_drummer, 1420) # E7
     play(rpi, l2_turner, l2_drummer, 1345) # F7
-    rpi.set_servo_pulsewidth(l2_turner, 1500)
+    rpi.set_servo_pulsewidth(l2_turner, 1625)
 
     play(rpi, r2_turner, r2_drummer, 1630)  # F#7
     play(rpi, r2_turner, r2_drummer, 1555)  # G7
@@ -73,7 +79,7 @@ def main():
     play(rpi, r2_turner, r2_drummer, 1335)  # A#7
     play(rpi, r2_turner, r2_drummer, 1265)  # B7
     play(rpi, r2_turner, r2_drummer, 1175)  # C8
-    rpi.set_servo_pulsewidth(r2_turner, 1500)
+    rpi.set_servo_pulsewidth(r2_turner, 1485)
 
 
 if __name__ == "__main__":

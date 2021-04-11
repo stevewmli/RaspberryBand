@@ -11,7 +11,13 @@ source env/bin/activate
 pip install -r requirements.txt
 
 # Setup - start here:
+On putty:
+cd py_ws
+cd RaspberryBand
+source env/bin/activate
 sudo pigpiod && source env/bin/activate
+
+python rband.py p
 
 # reset motor
 cd ~/py_ws/RaspberryBand 

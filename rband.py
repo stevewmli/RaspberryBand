@@ -12,18 +12,80 @@ except ModuleNotFoundError:
     print("pigpio not installed, running in test mode")
     force_virtual_mode = True
 
+
 def octave_adj(note, adj):
     nums = re.findall(r'\d+', note)
     src = nums[0]
     tgt = int(src) + adj
     return note.replace(src, str(tgt))
-    
+
+
 def timing(tempo, tempos, quarter_per_min):
     sec_per_quarter = 60.0 / quarter_per_min
     t = tempo.replace(".", "")
     scale = tempos[t]
     dot_scale = 1.5 if ("." in tempo) else 1.0
     return sec_per_quarter * scale * dot_scale
+
+
+def move_ahead(player, already_moved, note):
+    rkey = player.name + "_right"
+    lkey = player.name + "_left"
+    if not already_moved[rkey] and player.can_play_right_hand(note):
+        already_moved[rkey] = True
+        player.move_right_hand(note)
+    elif not already_moved[lkey] and player.can_play_left_hand(note):
+        already_moved[lkey] = True
+        player.move_left_hand(note)
+
+def who_play(xp1, xp2, note):
+    if xp1.can_play_right_hand(note):
+        return "xp1_right"
+    elif xp1.can_play_left_hand(note):
+        return "xp1_left"
+    if xp2.can_play_right_hand(note):
+        return "xp2_right"
+    if xp2.can_play_left_hand(note):
+        return "xp2_left"
+    return ""
+
+def lookahead(instructions, current, note, octave, xp1, xp2):
+    # look ahead next five instruction
+    index = instructions.index(current)
+    next_set = instructions[(index+1):(index+5)]
+
+    
+    already_moved = {
+        "xp1_right": False,
+        "xp1_left": False,
+        "xp2_right": False,
+        "xp2_left": False,
+    }
+    
+    hand = who_play(xp1, xp2, note)
+    if hand != "":
+        already_moved[hand] = True
+
+    # start move to the positions
+    for n in next_set:
+        if n[0] != "note":
+            continue
+
+        note = octave_adj(n[1], octave)
+        if xp1.can_play_note(note):
+            move_ahead(xp1, already_moved, note)
+        elif xp2.can_play_note(note):
+            move_ahead(xp2, already_moved, note)
+
+    if not already_moved["xp1_right"]:
+        xp1.stand_by_right_hand()
+    if not already_moved["xp1_left"]:
+        xp1.stand_by_left_hand()
+    if not already_moved["xp2_right"]:
+        xp2.stand_by_right_hand()
+    if not already_moved["xp2_left"]:
+        xp2.stand_by_left_hand()
+
 
 def main(song):
     # turner adjustment
@@ -56,14 +118,14 @@ def main(song):
     r_notes = {
         "D#6": 1605,
         "Eb6": 1605,
-        "E6":  1520,
-        "F6":  1455,
-        "F#6": 1390,
-        "Gb6": 1390,
-        "G6":  1305,
-        "G#6":  1230,
-        "Ab6":  1230,
-        "A6":  1140,
+        "E6":  1525,
+        "F6":  1465,
+        "F#6": 1405,
+        "Gb6": 1405,
+        "G6":  1325,
+        "G#6":  1245,
+        "Ab6":  1245,
+        "A6":  1135,
     }
 
     l2_notes = {
@@ -96,8 +158,8 @@ def main(song):
     lh2 = Hand(rpi, l2_notes, "C#7", 14, 15)
     rh2 = Hand(rpi, r2_notes, "A7", 2, 3)
 
-    xp1 = Percussionist(lh, rh)
-    xp2 = Percussionist(lh2, rh2)
+    xp1 = Percussionist("xp1", lh, rh)
+    xp2 = Percussionist("xp2", lh2, rh2)
 
     quarter_per_min = 90.0
     octave = 0
@@ -106,6 +168,7 @@ def main(song):
         instructions = yaml.load(f, Loader=yaml.FullLoader)
 
         for n in instructions:
+
             if n[0] == "quarter_per_min":
                 quarter_per_min = n[1]
                 continue
@@ -121,19 +184,23 @@ def main(song):
                 continue
 
             if n[0] == "note":
+                # from the current note, find the next note to play
+
                 note = octave_adj(n[1], octave)
+                # lookahead(instructions, n, note, octave, xp1, xp2)
                 t = timing(n[2], tempos, quarter_per_min)
                 print(f"play {note} - #{n[2]}: {t}")
-                
+
                 if xp1.can_play_note(note):
-                    xp2.stand_by()
+                    # xp2.stand_by()
                     xp1.play_note(note, t)
                 elif xp2.can_play_note(note):
-                    xp1.stand_by()
+                    # xp1.stand_by()
                     xp2.play_note(note, t)
                 else:
                     print(f"No player can play {n[1]}: {n[2]}")
                     sleep(t)
+
 
 def park():
     # turner adjustment

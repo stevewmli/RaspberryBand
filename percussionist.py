@@ -26,7 +26,7 @@ class Hand:
         sleep(0.1)
 
     def play_note(self, note, len):
-        if note == 'Sleep':
+        if note == 'Sleep' or note == 'Reset':
             sleep(len)
             return
 
@@ -38,7 +38,11 @@ class Hand:
             self.rpi.set_servo_pulsewidth(self.drummer, 1300)
             sleep(self.dummer_wait_time)
             self.rpi.set_servo_pulsewidth(self.drummer, self.drummer_up)
-            sleep(len - self.wait_time)
+            
+            after_dump = len - self.wait_time
+            if after_dump < 0.0:
+                after_dump = 0.07
+            sleep(after_dump)
         else:
             sleep(len)
 
@@ -46,12 +50,16 @@ class Hand:
         return note in self.notes
 
     def stand_by(self):
-        pw = self.notes[self.stand_by_note]
+        self.move_to(self.stand_by_note)
+
+    def move_to(self, note):
+        pw = self.notes[note]
         self.rpi.set_servo_pulsewidth(self.turner, pw)
 
 
 class Percussionist:
-    def __init__(self, left_hand, right_hand):
+    def __init__(self, name, left_hand, right_hand):
+        self.name = name
         self.left_hand = left_hand
         self.right_hand = right_hand
 
@@ -64,7 +72,25 @@ class Percussionist:
             self.left_hand.stand_by()
 
     def can_play_note(self, note):
-        return self.left_hand.can_play_note(note) or self.right_hand.can_play_note(note)
+        return self.can_play_right_hand(note) or self.can_play_left_hand(note)
+
+    def can_play_right_hand(self, note):
+        return self.right_hand.can_play_note(note)
+
+    def can_play_left_hand(self, note):
+        return self.left_hand.can_play_note(note)
+
+    def move_right_hand(self, note):
+        self.right_hand.move_to(note)
+    
+    def move_left_hand(self, note):
+        self.left_hand.move_to(note)
+
+    def stand_by_right_hand(self):
+        self.right_hand.stand_by()
+    
+    def stand_by_left_hand(self):
+        self.left_hand.stand_by()
 
     def stand_by(self):
         self.left_hand.stand_by()
